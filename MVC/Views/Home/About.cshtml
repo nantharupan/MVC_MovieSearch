@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MVC.Models.Movie>   
+
+@{
+    ViewBag.Title = "About";
+}
+
+
+        <div style="width:500px; background-color:white; height:250px; line-height:250px; align-content:center; margin:auto; ">
+            
+            <div> <img  src=""/></div>
+            <input style="vertical-align:central; align-self:center;"  type="text" /> 
+            <input type="button" style="vertical-align:central; align-self:center;" value="Search" />
+
+        </div>
+
+
+<article>
+    <div id="features-wrapper">
+        <div id="features">
+            <div class="container">
+                <div class="row">
+                   
+                        @foreach (var item in Model)
+                        {
+
+                            
+
+                                <div class="3u 12u(mobile)">
+
+                                    <!-- Feature #4 -->
+                                    <section>
+                                        <a href="#" class="bordered-feature-image"><img src="@item.ThumbilImage" alt="" height="150px;" /></a>
+                                        <h2>@item.MovieName (@item.ReleasedYear)</h2>
+                                        <h3>Rating : @item.Rating</h3>
+                                        <h3>Actors</h3>
+                                        @foreach (var items in item.Actors)
+                                        {
+                                            <h4> @items </h4>
+                                        }
+                                        <p>
+                                            @item.Description
+                                        </p>
+                                    </section>
+
+                                </div>
+
+
+
+
+                                <!--      <div style="float:left; margin:10px; padding:5px; border-bottom-width:thick; border-style:solid; ">
+                                          <div style="float:left;">
+                                              <img src="@item.ThumbilImage" />
+                                              <div st>@item.Description</div>
+                                          </div>
+                                          <div style="float:left;">
+                                              <div><span><div style="float:left">@item.MovieName  </div><div style="float:left;"> ( @item.ReleasedYear )</div></span>  </div>
+                                              <div>Rating : @item.Rating /10</div>
+
+                                              <div>Actors</div>
+                                              <div>
+                                                  @foreach (var items in item.Actors)
+                                                  {
+                                                      <div> @items </div>
+                                                  }
+                                              </div>
+
+                                              <div>Stars</div>
+                                              @foreach (var stars in item.Stars)
+                                              {
+                                                  <div> @stars </div>
+                                              }
+                                          </div>
+
+
+                                      </div> -->
+                                
+                            
+                        }
+
+                            
+                       
+                            
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            
+    </article>
+
+    
+

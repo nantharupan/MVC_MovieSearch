@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+
+            <script src="~/Scripts/jquery.min.js"></script>
+            <script src="~/Scripts/jquery.dropotron.min.js"></script>
+            <script src="~/Scripts/skel.min.js"></script>
+            <script src="~/Scripts/util.js"></script>
+            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+            <script src="~/Scripts/main.js"></script>
+        </header>
+        <div id="body" style="background-color:white;">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="container" style="background-color:black; width:100%; height:50px">
+                <div id="menu" class="row-fluid">
+                    <div class="" style="margin: 0 auto;">
+
+                        <ul style="width:100%; text-align:center;">
+                            <li style="display: inline-block;list-style-type: none; padding-right: 20px; color:white;"><a href="#">About us</a></li>
+                            <li style="display: inline-block;list-style-type: none; padding-right: 20px; "><a href="#">Home</a></li>
+                            <li style="display: inline-block;list-style-type: none; padding-right: 20px;"><a href="#">facebook</a></li>
+                            <li style="display: inline-block;list-style-type: none; padding-right: 20px;"><a href="#">Twitter</a></li>
+                            <li style="display: inline-block;list-style-type: none; padding-right: 20px;"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                     </div>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
