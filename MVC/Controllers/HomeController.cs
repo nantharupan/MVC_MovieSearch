@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MVC.Controllers
 {
@@ -47,17 +48,17 @@ namespace MVC.Controllers
 
 
             List<Movie> mo = new List<Movie>();
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
+        //    mo.Add(m);
+        //    mo.Add(m);
+         //   mo.Add(m);
+         //   mo.Add(m);
+        //    mo.Add(m);
+         //   mo.Add(m);
 
             return View(mo);
         }
 
-        public ActionResult About()
+        public ActionResult About( string searchString)
         {
             Movies movies = new Movies();
 
@@ -74,30 +75,59 @@ namespace MVC.Controllers
             };
             movies.movies.Add(m);
             System.Diagnostics.Debug.WriteLine("TEST");
-            string responseString="";
-            using (var client = new HttpClient())
+
+          
+           List<Movie> mo = new List<Movie>();
+
+            if(searchString=="A")
             {
-                client.BaseAddress = new Uri("http://localhost:51704/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = client.GetAsync("api/movie").Result;
-                if (response.IsSuccessStatusCode)
+                string responseString = "";
+                using (var client = new HttpClient())
                 {
-                    responseString = response.Content.ReadAsStringAsync().Result;
+                    client.BaseAddress = new Uri("http://localhost:51704/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    var response = client.GetAsync("api/movie?name=dfdf").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        responseString = response.Content.ReadAsStringAsync().Result;
+                    }
                 }
+
+             //   Movie m1 = new Movie(responseString);
+
+                string jsonInput=responseString; //
+
+                System.Console.Error.WriteLine(responseString);
+
+                JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+                mo= jsonSerializer.Deserialize<List<Movie>>(jsonInput);
+
+
+             //   mo.Add(objCustomer);
+            }else if(searchString=="AA")
+            {
+                mo.Add(m);
+                mo.Add(m);
+                mo.Add(m);
+                mo.Add(m);
+                mo.Add(m);
+                mo.Add(m);
+                mo.Add(m);
+                mo.Add(m);
+            }
+            else
+            {
+             //   mo.Add(m);
+                mo.Add(m);
             }
 
-            System.Console.Write(responseString);
-            System.Diagnostics.Debug.WriteLine(responseString);
-
-
-            List<Movie> mo = new List<Movie>();
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
-            mo.Add(m);
+        //    mo.Add(m);
+       //     mo.Add(m);
+       //     mo.Add(m);
+       //     mo.Add(m);
+       //     mo.Add(m);
+       //     mo.Add(m);
 
 
             return View(mo);

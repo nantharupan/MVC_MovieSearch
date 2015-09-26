@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,20 @@ namespace MVC.Models
         public Decimal Rating { get; set; }
         public Uri ThumbilImage { get; set; }
         public string Description { get; set; }
+
+        public Movie()
+        {
+
+        }
+
+        public Movie(string json)
+        {
+            JObject jObject = JObject.Parse(json);
+            JToken jUser = jObject["MovieName"];
+            MovieName = (string)jUser["MovieName"];
+            Description = (string)jUser["Description"];
+          
+        }
     }
 
     public class Movies

@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
+using System.Web.Script.Serialization;
 using Web.API.Models;
+using WebApplication2.Models;
 
 namespace Web.API.Service
 {
@@ -12,7 +16,7 @@ namespace Web.API.Service
         {
             return new DetailMovie
                 {
-                    MovieName="Jurassic Park",
+                    MovieName="AAAAAAAAAAAA",
                     DirectorName="Steven Spielberg",
                     Description="During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
                     Country="USA",
@@ -33,12 +37,40 @@ namespace Web.API.Service
                  };
         }
 
-        public Movie[] GetMovies(string searchString)
+        public idmbMovie[] GetMovies(string searchString)
         {
-            return new Movie[]{
+            List<idmbMovie> mo = new List<idmbMovie>();
+
+
+            string responseString = "";
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://www.imdb.com/xml/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = client.GetAsync("find?json=1&nr=1&tt=on&q=Jurasic").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    responseString = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+
+            string jsonInput = responseString; //
+
+            System.Console.Error.WriteLine(responseString);
+
+            JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+            idmdMovieList m= jsonSerializer.Deserialize<idmdMovieList>(jsonInput);
+
+           return m.title_popular.ToArray();
+
+
+
+
+        /*    return new Movie[]{
 
                 new Movie{
-                     MovieName="Jurassic Park",
+                     MovieName="JAAA",
                      Rating=new decimal(8.1),
                      Description="During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
                    Actors= new List<string>(){ "Sam Neill", "Jeff Goldblum", "Bob Peck", },
@@ -61,7 +93,7 @@ namespace Web.API.Service
                
                 }
 
-            };
+            }; */
         }
     }
 }

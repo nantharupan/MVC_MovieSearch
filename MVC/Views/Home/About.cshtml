@@ -1,16 +1,26 @@
 ﻿@model IEnumerable<MVC.Models.Movie>   
 
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Movie Search";
 }
 
 
         <div style="width:500px; background-color:white; height:250px; line-height:250px; align-content:center; margin:auto; ">
-            
+           
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Title: @Html.TextBox("SearchString") <br />
+                    <input type="submit" value="Filter" />
+                </p>
+            } 
+
+
+     <!--        
             <div> <img  src=""/></div>
             <input style="vertical-align:central; align-self:center;"  type="text" /> 
             <input type="button" style="vertical-align:central; align-self:center;" value="Search" />
-
+         -->
         </div>
 
 

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Web.API.Models;
 using Web.API.Service;
+using WebApplication2.Models;
 
 namespace Web.API.Controllers
 {
@@ -13,7 +14,7 @@ namespace Web.API.Controllers
     {
         private MovieSearchService moviewSearchService;
 
-        public Movie[] Get(string name)
+        public idmbMovie[] Get(string name)
         {
             return moviewSearchService.GetMovies("");
         }
