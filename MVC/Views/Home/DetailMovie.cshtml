@@ -1,0 +1,50 @@
+﻿@model MVC.Models.DetailMovie
+@model MVC.Models.Movie
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div style="width:500px; background-color:white; height:250px; line-height:250px; align-content:center; margin:auto; ">
+
+
+
+    @using (Html.BeginForm())
+    {
+        <div style="">
+            <div style="float:left; margin:5px; ">
+                @Html.TextBox("SearchString")
+            </div>
+            <div style="float:left; margin:5px;">
+                <input type="submit" value="Search" style="height:40px;" />
+            </div>
+        </div>
+    }
+</div>
+
+
+<article>
+    <div id="features-wrapper">
+        <div id="features">
+            <div class="container">
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+
+                        <!-- Feature #4 -->
+                        <section>
+                            <a href="#" class="bordered-feature-image"><img src=".ThumbilImage" alt="" height="150px;" /></a>
+                            <h3>@Model.MovieName</h3>
+                            <h3>Rating :</h3>
+                            <h3>Actors</h3>
+                            
+                                @Model.Description
+                            </p>
+                        </section>
+
+                    </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+</article>

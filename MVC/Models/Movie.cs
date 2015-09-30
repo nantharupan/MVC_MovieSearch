@@ -9,12 +9,22 @@ namespace MVC.Models
 {
     public class Movie
     {
+        [Required]
+        [DataType(DataType.Text)]
         public string MovieName { get; set; }
-        public List<string> Actors { get; set; }
-        public List<string> Stars { get; set; }
+
+        public List<Person> Actors { get; set; }
+
+        public List<Person> Stars { get; set; }
+
         public int ReleasedYear { get; set; }
+
         public Decimal Rating { get; set; }
+
+        [DataType(DataType.Url)]
         public Uri ThumbilImage { get; set; }
+
+        [Required]
         public string Description { get; set; }
 
         public Movie()

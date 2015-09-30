@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebApplication2.Models;
 
-namespace Web.API.Models
+namespace MVC.Models
 {
-    /// <summary>
-    /// DetailMovie Class
-    /// It is the model defining the Detail description of the movie, which is extended the Movie Class
-    /// </summary>
-    public class DetailMovie : Movie
+    public class DetailMovie
     {
         public List<Person> DirectorName { get; set; }
         public List<Person> ProducerName { get; set; }
@@ -25,7 +20,6 @@ namespace Web.API.Models
         public string StoryLine { get; set; }
         public List<Person> MusicDirectorName { get; set; }
         public bool isMovie { get; set; }
-
 
     }
 }

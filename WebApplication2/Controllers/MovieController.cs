@@ -19,6 +19,11 @@ namespace Web.API.Controllers
             return moviewSearchService.GetMovies("");
         }
 
+        public DetailMovie GetMovie(string movieName, string id)
+        {
+            return null;
+        }
+
         public MovieController ()
         {
             this.moviewSearchService = new MovieSearchService();

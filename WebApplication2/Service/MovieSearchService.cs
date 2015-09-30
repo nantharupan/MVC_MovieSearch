@@ -10,9 +10,18 @@ using WebApplication2.Models;
 
 namespace Web.API.Service
 {
+    /// <summary>
+    /// MovieSearchService Class
+    /// </summary>
     public class MovieSearchService
     {
-        public DetailMovie GetMovie(string Moviename)
+        /// <summary>
+        /// Search Service to find the detail of the movie based on the movie id or movie name.
+        /// </summary>
+        /// <param name="searchString">The search string</param>
+        /// <param name="d">The id of the Movie which is used to find the moview, which is part of the Movie data base provider</param>
+        /// <returns>Get the whole detail about the movie</returns>
+        public DetailMovie GetMovie(string searchString, string id)
         {
             return new DetailMovie
                 {
@@ -37,6 +46,11 @@ namespace Web.API.Service
                  };
         }
 
+        /// <summary>
+        /// Search Service to find list of movies associated with the search string
+        /// </summary>
+        /// <param name="searchString">The search string</param>
+        /// <returns>List of Movies associated with the search string</returns>
         public idmbMovie[] GetMovies(string searchString)
         {
             List<idmbMovie> mo = new List<idmbMovie>();

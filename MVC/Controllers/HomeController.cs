@@ -21,8 +21,8 @@ namespace MVC.Controllers
                 MovieName = "Jurassic Park",
                 Rating = new decimal(8.1),
                 Description = "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
-                Actors = new List<string>() { "Sam Neill", "Jeff Goldblum", "Bob Peck", },
-                Stars = new List<string>() { " Jeff Goldblum", " Sam Neill" },
+           //     Actors = new List<string>() { "Sam Neill", "Jeff Goldblum", "Bob Peck", },
+           //     Stars = new List<string>() { " Jeff Goldblum", " Sam Neill" },
 
                 ThumbilImage = new Uri("http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_UX67_CR0,0,67,98_AL_.jpg"),
                 ReleasedYear = 1993,
@@ -66,8 +66,8 @@ namespace MVC.Controllers
                 MovieName = "Jurassic Park",
                 Rating = new decimal(8.1),
                 Description = "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
-                Actors = new List<string>() { "Sam Neill", "Jeff Goldblum", "Bob Peck", },
-                Stars = new List<string>() { " Jeff Goldblum", " Sam Neill" },
+            //    Actors = new List<string>() { "Sam Neill", "Jeff Goldblum", "Bob Peck", },
+             //   Stars = new List<string>() { " Jeff Goldblum", " Sam Neill" },
 
                 ThumbilImage = new Uri("http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_UX67_CR0,0,67,98_AL_.jpg"),
                 ReleasedYear = 1993,
@@ -138,6 +138,20 @@ namespace MVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult DetailMovie()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            DetailMovie m = new DetailMovie{
+                 Country="US",
+                  isMovie=true,
+                   Language="English",
+                    StoryLine="ECCCCCCCCCCCCCc",
+            }
+
+            return View(m);
         }
     }
 }
