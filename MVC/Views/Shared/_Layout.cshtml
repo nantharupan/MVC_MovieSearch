@@ -8,40 +8,82 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
-    <body>
-        <header>
+<body>
+    <header>
 
-            <script src="~/Scripts/jquery.min.js"></script>
-            <script src="~/Scripts/jquery.dropotron.min.js"></script>
-            <script src="~/Scripts/skel.min.js"></script>
-            <script src="~/Scripts/util.js"></script>
-            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-            <script src="~/Scripts/main.js"></script>
-        </header>
-        <div id="body" style="background-color:white;">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="container" style="background-color:black; width:100%; height:50px">
-                <div id="menu" class="row-fluid">
-                    <div class="" style="margin: 0 auto;">
+        <style>
+            .floatLeft {
+                float: left;
+            }
 
-                        <ul style="width:100%; text-align:center;">
-                            <li style="display: inline-block;list-style-type: none; padding-right: 20px; color:white;"><a href="#">About us</a></li>
-                            <li style="display: inline-block;list-style-type: none; padding-right: 20px; "><a href="#">Home</a></li>
-                            <li style="display: inline-block;list-style-type: none; padding-right: 20px;"><a href="#">facebook</a></li>
-                            <li style="display: inline-block;list-style-type: none; padding-right: 20px;"><a href="#">Twitter</a></li>
-                            <li style="display: inline-block;list-style-type: none; padding-right: 20px;"><a href="#">Privacy Policy</a></li>
-                        </ul>
-                     </div>
+            .movie-title {
+                color: white;
+                font-weight: 500;
+                font-size: x-large;
+                font-style: italic;
+            }
+
+            .headings {
+                color: white;
+                font-weight: 500;
+                font-size: x-large;
+                font-style: italic;
+            }
+            .description {
+                 color: white;
+                font-size: large;
+                font-style: italic;
+            }
+        </style>
+
+
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/jquery.dropotron.min.js"></script>
+        <script src="~/Scripts/skel.min.js"></script>
+        <script src="~/Scripts/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="~/Scripts/main.js"></script>
+        
+    </header>
+    <div class="portfolio-parlex" id="portfolio">
+        <div class="parlex3-back">
+            <div class="w-container">
+                <div class="wrap">
+                    <div class="portfolio">
+                        <div id="body">
+                            @RenderSection("featured", required: false)
+                            <section class="content-wrapper main-content clear-fix">
+                                @RenderBody()
+                            </section>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    <div class="footer-parlex">
+        <div class="parlex9-back">
+            <div class="w-container" style="padding:10px;">
+                <div class="wrap">
+                      <div class="footer-social">
+                        <div class="fotter-social-wrap" style="width:20%">
+                            <a href="https://www.facebook.com/"><img class="fotter-social" src="../images/social/Facebook.png" alt="52dd249c929b601f5400054c_Facebook.png"></a>
+                            <a href="https://www.twitter.com/"><img class="fotter-social" src="../images/social/Twitter.png" alt="52dd24f2929b601f54000551_Twitter.png"></a>
+                            <a href="https://plus.google.com/"><img class="fotter-social" src="../images/social/Google-plus.png" alt="52dd26a55b54031d540005af_Google-plus.png"></a>
+                            <a href="https://www.youtube.com/"><img class="fotter-social" src="../images/social/Youtube.png" alt="52de54495d3566c14300040a_Youtube.png"></a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="fotter-text">
+                            <p class="copyright-area">©2015&nbsp;<a href="#" title="ABC Technologies" target="_blank">ABC TECHNOLOGIES</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+                        @Scripts.Render("~/bundles/jquery")
+                        @RenderSection("scripts", required: false)
+</body>
 </html>

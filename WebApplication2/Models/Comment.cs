@@ -11,7 +11,7 @@ namespace Web.API.Models
     /// </summary>
     public class Comment
     {
-        public string Comment { get; set; }
+        public string CommentByPublic { get; set; }
         public string CommentedBy { get; set; }
         public DateTime CommentedDate { get; set; }
     }

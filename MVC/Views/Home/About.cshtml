@@ -5,7 +5,7 @@
 }
 
 
-<div style="width:500px; background-color:white; height:250px; line-height:250px; align-content:center; margin:auto; ">
+<div style="width:500px;  height:150px; line-height:150px; align-content:center; margin:auto; ">
 
 
 
@@ -24,10 +24,7 @@
 
 
 <article>
-    <div id="features-wrapper">
-        <div id="features">
-            <div class="container">
-                <div class="row">
+                 <div class="row" style="height:auto; margin-left:20px; margin-right:20px;  ">
 
                     @foreach (var item in Model)
                     {
@@ -36,16 +33,16 @@
 
                             <!-- Feature #4 -->
                             <section>
-                                <a href="#" class="bordered-feature-image"><img src="@item.ThumbilImage" alt="" height="150px;" /></a>
-                                <h2>@item.MovieName (@item.ReleasedYear)</h2>
-                                <h3>Rating : @item.Rating</h3>
-                                <h3>Actors</h3>
-                                @foreach (var items in item.Actors)
-                                {
-                                    <h4> @items.Name </h4>
-                                }
-                                <p>
-                                    @item.Description
+                                <div class="movie-title">   @Html.ActionLink(item.MovieName, "DetailMovie", "Home", new { movieId = item.id, youTubeId = item.YouTubeId }, new {@style = "font-weight:bold;", @class = "movie-title"}) </div>
+                                @if (item.ThumbilImage!=null)
+                                    {
+                                        <a href="#" class="bordered-feature-image"><img src="@item.ThumbilImage" alt="" height="150" width="200" /></a>
+                                        <iframe width="200" height="150" src="http://www.youtube.com/embed/@item.YouTubeId"></iframe>
+
+                                    }   
+                                
+                                <p class="description" > 
+                                       @item.Description
                                 </p>
                             </section>
 
@@ -53,9 +50,7 @@
 
                     }
                 </div>
-            </div>
-        </div>
-    </div>
+  
 
 </article>
 

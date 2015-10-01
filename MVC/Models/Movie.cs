@@ -19,13 +19,16 @@ namespace MVC.Models
 
         public int ReleasedYear { get; set; }
 
-        public Decimal Rating { get; set; }
+        public string Rating { get; set; }
 
         [DataType(DataType.Url)]
         public Uri ThumbilImage { get; set; }
 
         [Required]
         public string Description { get; set; }
+
+        public string YouTubeId { get; set; }
+        public string id { get; set; }
 
         public Movie()
         {

@@ -14,14 +14,14 @@ namespace Web.API.Controllers
     {
         private MovieSearchService moviewSearchService;
 
-        public idmbMovie[] Get(string name)
+        public List<Movie> Get(string name)
         {
-            return moviewSearchService.GetMovies("");
+            return moviewSearchService.GetMovies(name);
         }
 
-        public DetailMovie GetMovie(string movieName, string id)
+        public DetailMovie GetMovie(string IMDBid, string youTubeID)
         {
-            return null;
+            return moviewSearchService.GetMovie(IMDBid, youTubeID);
         }
 
         public MovieController ()

@@ -1,50 +1,116 @@
 ﻿@model MVC.Models.DetailMovie
-@model MVC.Models.Movie
 @{
     ViewBag.Title = "Contact";
+   
 }
 
-<div style="width:500px; background-color:white; height:250px; line-height:250px; align-content:center; margin:auto; ">
 
 
+<div class="container" style="margin-bottom:15px; height:auto;">
+     <div style="margin:5px; float:left; height:auto;">
+                       <a href="#">
+        <img height="300" width="217" alt="Jurassic World Poster" title="Jurassic World (2015) Poster" src="@Model.ThumbilImage" itemprop="image">
 
-    @using (Html.BeginForm())
-    {
-        <div style="">
-            <div style="float:left; margin:5px; ">
-                @Html.TextBox("SearchString")
-            </div>
-            <div style="float:left; margin:5px;">
-                <input type="submit" value="Search" style="height:40px;" />
-            </div>
+                        </a>
+                 </div>
+    
+    <div style="margin:5px; float:left;">
+        <div>
+            <h1 class="movie-title">
+                <span>@Model.MovieName </span>
+                <span>(@Model.ReleasedYear)</span>
+            </h1>
         </div>
-    }
-</div>
-
-
-<article>
-    <div id="features-wrapper">
-        <div id="features">
-            <div class="container">
-                <div class="row">
-                    <div class="3u 12u(mobile)">
-
-                        <!-- Feature #4 -->
-                        <section>
-                            <a href="#" class="bordered-feature-image"><img src=".ThumbilImage" alt="" height="150px;" /></a>
-                            <h3>@Model.MovieName</h3>
-                            <h3>Rating :</h3>
-                            <h3>Actors</h3>
-                            
-                                @Model.Description
-                            </p>
-                        </section>
-
+     
+                 @if(Model.Length!=null)
+                 { 
+                <div class="headings">
+                    Length:
+                    <strong><span itemprop="ratingValue">@Model.Length</span></strong>                </div>
+                 }
+                <div class="">
+                    <div class="headings">
+                        Ratings: <strong><span itemprop="ratingValue">  @Model.Rating</span></strong><span class="mellow">/<span itemprop="bestRating">10 &nbsp </span></span> &nbspfrom &nbsp<span itemprop="ratingCount">@Model.NumberOfVotes</span> users
                     </div>
 
-            </div>
-            </div>
-        </div>
-    </div>
+                </div>
+                 
 
-</article>
+                @if (Model.Description != null)
+                {
+                    <div>
+                        <p style="text-wrap: normal; max-width:400px;">
+                          @Model.Description;
+                        </p>
+
+                    </div>
+                }
+
+                @if (Model.DirectorName != null)
+                {
+                    <div class="txt-block" itemprop="director" itemscope="">
+                        <h4 class="headings">Director:</h4>
+                        @foreach (var d in Model.DirectorName)
+                        {
+                            <a class="movie-title" href="#" itemprop="url"><span class="itemprop" itemprop="name">@d.Name,</span></a>
+
+                        }
+                    </div>
+                }
+                @if (Model.Stars != null)
+                {
+
+                    <div class="txt-block" itemprop="actors" itemscope="">
+                        <h4 class="headings">Stars:</h4>
+                        @foreach (var d in Model.Stars)
+                        {
+                            <a class="movie-title" href="#" itemprop="url"><span class="itemprop" itemprop="name">@d.Name,</span></a>
+
+                        }
+                    </div>
+
+                }
+
+                @if (Model.YouTubeId != null)
+                {
+                    <div class="">
+                        <h4 class="headings">Watch Trailer:</h4>
+                        <iframe width="200" height="150" src="http://www.youtube.com/embed/@Model.YouTubeId"></iframe>
+                    </div>
+                }
+                
+
+                @if (Model.PublicComments != null && Model.PublicComments.Count>0)
+                {
+                    <div class="txt-block" itemprop="actors" itemscope="">
+                        <h4 class="headings">Public Comments:</h4>
+                        @foreach (var d in Model.PublicComments)
+                        {
+                            <h4 class="headings">Commented By @d.CommentedBy on : <span>@d.CommentedDate</span></h4>
+                            <p >@d.CommentByPublic</p>
+
+                        }
+                    </div>
+                }
+
+                <div class="txt-block">
+                    <h4 class="headings">Share...</h4>
+
+                    
+
+                    <a onclick="window.open(&quot;http://www.facebook.com/sharer.php?u=@HttpContext.Current.Request.Url.AbsoluteUri&quot;, 'newWindow', 'width=626,height=436'); return false;" href="http://www.facebook.com/sharer.php?u=@HttpContext.Current.Request.Url.AbsoluteUri" title="Share on Facebook" class="facebook" target="_blank">
+                        <span class="itemprop" itemprop="name">Facebook</span>
+                    </a>
+                    <span> | </span>
+                    <a onclick="window.open(&quot;http://twitter.com/intent/tweet?text=@Model.MovieName @HttpContext.Current.Request.Url.AbsoluteUri&quot;, 'newWindow', 'width=815,height=436'); return false;" title="Share on Twitter" class="twitter" target="_blank">
+                        <span class="itemprop" itemprop="name">Twitter</span>
+                    </a>
+
+                    
+                </div>
+
+            </div>
+    </div>
+    
+   
+<div style="clear:both;"></div>

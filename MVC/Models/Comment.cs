@@ -5,7 +5,14 @@ using System.Web;
 
 namespace MVC.Models
 {
+    /// <summary>
+    /// Comment Class
+    /// It is the model defining the Comments for each movie
+    /// </summary>
     public class Comment
     {
+        public string CommentByPublic { get; set; }
+        public string CommentedBy { get; set; }
+        public DateTime CommentedDate { get; set; }
     }
 }

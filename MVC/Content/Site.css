@@ -754,3 +754,23 @@ tr.pager td {
             margin: 0;
         }
 }
+
+.portfolio-parlex {
+  background: url('../images/parlex.jpg');
+  padding-top: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.portfolio-parlex {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.parlex3-back {
+  padding-top: 15px;
+  background-color: transparent;
+  background-image: -webkit-linear-gradient(rgba(72, 207, 173, 0.99), rgba(72, 207, 173, 0.78));
+  background-image: -o-linear-gradient(rgba(72, 207, 173, 0.99), rgba(72, 207, 173, 0.78));
+  background-image: linear-gradient(rgba(72, 207, 173, 0.99), rgba(72, 207, 173, 0.78));
+}

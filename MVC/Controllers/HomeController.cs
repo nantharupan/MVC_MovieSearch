@@ -14,87 +14,32 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            Movies movies = new Movies();
-
-            Movie m = new Movie
-            {
-                MovieName = "Jurassic Park",
-                Rating = new decimal(8.1),
-                Description = "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
-           //     Actors = new List<string>() { "Sam Neill", "Jeff Goldblum", "Bob Peck", },
-           //     Stars = new List<string>() { " Jeff Goldblum", " Sam Neill" },
-
-                ThumbilImage = new Uri("http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_UX67_CR0,0,67,98_AL_.jpg"),
-                ReleasedYear = 1993,
-
-            };
-            movies.movies.Add(m);
-            System.Diagnostics.Debug.WriteLine("TEST");
-            string responseString = "";
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:51704/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = client.GetAsync("api/movie").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    responseString = response.Content.ReadAsStringAsync().Result;
-                }
-            }
-
-            System.Console.Write(responseString);
-            System.Diagnostics.Debug.WriteLine(responseString);
-
-
-            List<Movie> mo = new List<Movie>();
-        //    mo.Add(m);
-        //    mo.Add(m);
-         //   mo.Add(m);
-         //   mo.Add(m);
-        //    mo.Add(m);
-         //   mo.Add(m);
-
-            return View(mo);
+           List<Movie> mo = new List<Movie>();
+           return View(mo);
         }
 
-        public ActionResult About( string searchString)
+        public ActionResult About(string searchString)
         {
-            Movies movies = new Movies();
-
-            Movie m = new Movie {
-                MovieName = "Jurassic Park",
-                Rating = new decimal(8.1),
-                Description = "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
-            //    Actors = new List<string>() { "Sam Neill", "Jeff Goldblum", "Bob Peck", },
-             //   Stars = new List<string>() { " Jeff Goldblum", " Sam Neill" },
-
-                ThumbilImage = new Uri("http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_UX67_CR0,0,67,98_AL_.jpg"),
-                ReleasedYear = 1993,
-            
-            };
-            movies.movies.Add(m);
-            System.Diagnostics.Debug.WriteLine("TEST");
-
+            if(searchString=="" || searchString==null)
+            {
+                searchString = "Jurasic Park";
+            }
           
            List<Movie> mo = new List<Movie>();
 
-            if(searchString=="A")
-            {
+            
                 string responseString = "";
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("http://localhost:51704/");
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    var response = client.GetAsync("api/movie?name=dfdf").Result;
+                    var response = client.GetAsync("api/movie?name=" + searchString).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         responseString = response.Content.ReadAsStringAsync().Result;
                     }
                 }
-
-             //   Movie m1 = new Movie(responseString);
 
                 string jsonInput=responseString; //
 
@@ -102,34 +47,6 @@ namespace MVC.Controllers
 
                 JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
                 mo= jsonSerializer.Deserialize<List<Movie>>(jsonInput);
-
-
-             //   mo.Add(objCustomer);
-            }else if(searchString=="AA")
-            {
-                mo.Add(m);
-                mo.Add(m);
-                mo.Add(m);
-                mo.Add(m);
-                mo.Add(m);
-                mo.Add(m);
-                mo.Add(m);
-                mo.Add(m);
-            }
-            else
-            {
-             //   mo.Add(m);
-                mo.Add(m);
-            }
-
-        //    mo.Add(m);
-       //     mo.Add(m);
-       //     mo.Add(m);
-       //     mo.Add(m);
-       //     mo.Add(m);
-       //     mo.Add(m);
-
-
             return View(mo);
         }
 
@@ -140,18 +57,36 @@ namespace MVC.Controllers
             return View();
         }
 
-        public ActionResult DetailMovie()
+        public ActionResult DetailMovie(string movieId,string youTubeId)
         {
-            ViewBag.Message = "Your contact page.";
-
-            DetailMovie m = new DetailMovie{
-                 Country="US",
-                  isMovie=true,
-                   Language="English",
-                    StoryLine="ECCCCCCCCCCCCCc",
+            if (youTubeId == "" || youTubeId == null)
+            {
+                youTubeId = "";
             }
 
-            return View(m);
+            DetailMovie movie = new Models.DetailMovie();
+
+            string responseString = "";
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:51704/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = client.GetAsync("api/movie?IMDBid=" + movieId + "&YouTubeid=" + youTubeId).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    responseString = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+
+            string jsonInput = responseString; //
+
+            System.Console.Error.WriteLine(responseString);
+
+            JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+            movie = jsonSerializer.Deserialize<DetailMovie>(jsonInput);
+
+            return View(movie);
         }
     }
 }
