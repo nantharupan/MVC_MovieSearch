@@ -58,6 +58,5 @@ E:\Project\GIT\MVC3\WebApplication2\bin\System.Net.Http.Formatting.xml
 E:\Project\GIT\MVC3\WebApplication2\bin\System.Web.Http.xml
 E:\Project\GIT\MVC3\WebApplication2\bin\System.Web.Http.WebHost.xml
 E:\Project\GIT\MVC3\WebApplication2\obj\Debug\Web.API.csproj.App.config
-E:\Project\GIT\MVC3\WebApplication2\obj\Debug\Web.API.csprojResolveAssemblyReference.cache
 E:\Project\GIT\MVC3\WebApplication2\obj\Debug\WebApplication2.dll
 E:\Project\GIT\MVC3\WebApplication2\obj\Debug\WebApplication2.pdb
