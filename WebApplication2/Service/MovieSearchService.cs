@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Script.Serialization;
 using Web.API.Helpers;
 using Web.API.Models;
@@ -41,36 +42,50 @@ namespace Web.API.Service
         /// <returns>List of Movies associated with the search string</returns>
         public List<Movie> GetMovies(string searchString)
         {
-           Helper helper = new Helper();
+            List<Movie> cachedSearchResults;
+            if (CacheHelper.Get(searchString, out cachedSearchResults))
+            {
+                return cachedSearchResults;
+            }
+            else
+            {
 
-           String jsonResponse = helper.GetSearchJSONResults(searchString);  // Get the JSON String from the IMDB un official API
 
-           List<Movie> searchResults = helper.ParseJSONtoMovieList(jsonResponse); //Parse the JSON and create a list of Movie
+                Helper helper = new Helper();
 
-           List<YouTubeModel> searchYouTubeResults = helper.GetYTResults(searchString); //Get the List of YouTubeModel for the same search string
+                String jsonResponse = helper.GetSearchJSONResults(searchString);  // Get the JSON String from the IMDB un official API
 
-           // Compare the two list of results and match the movie based on title and set the Thumbnal, Vidoe ID and description
-           foreach (var m in searchResults)
-           {
-               foreach (var ym in searchYouTubeResults)
-               {
-                   if (ym.Title.Contains(m.MovieName))
-                   {
-                       m.ThumbilImage = ym.Thumbnal;
-                       m.YouTubeId = ym.VideoId;
-                       m.Description = ym.Description;
-                       break;
-                   }
-               }
-           }
+                List<Movie> searchResults = helper.ParseJSONtoMovieList(jsonResponse); //Parse the JSON and create a list of Movie
 
-           if (jsonResponse != null)
-           {
-               return helper.SortMovies(searchResults);  // Sort the movie to show the movies with video in first
-           }else
-           {
-               return null;
-           }
+                List<YouTubeModel> searchYouTubeResults = helper.GetYTResults(searchString); //Get the List of YouTubeModel for the same search string
+
+                // Compare the two list of results and match the movie based on title and set the Thumbnal, Vidoe ID and description
+                foreach (var m in searchResults)
+                {
+                    foreach (var ym in searchYouTubeResults)
+                    {
+                        if (ym.Title.Contains(m.MovieName))
+                        {
+                            m.ThumbilImage = ym.Thumbnal;
+                            m.YouTubeId = ym.VideoId;
+                            m.Description = ym.Description;
+                            break;
+                        }
+                    }
+                }
+
+                if (jsonResponse != null)
+                {
+                    CacheHelper.Add(searchResults, searchString);
+                    return helper.SortMovies(searchResults);  // Sort the movie to show the movies with video in first
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+        
 
 
            
