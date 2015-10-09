@@ -167,6 +167,6 @@ E:\Project\GIT\MVC3\MVC\bin\ko\System.Spatial.resources.dll
 E:\Project\GIT\MVC3\MVC\bin\ru\System.Spatial.resources.dll
 E:\Project\GIT\MVC3\MVC\bin\zh-Hans\System.Spatial.resources.dll
 E:\Project\GIT\MVC3\MVC\bin\zh-Hant\System.Spatial.resources.dll
+E:\Project\GIT\MVC3\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 E:\Project\GIT\MVC3\MVC\obj\Debug\MVC.dll
 E:\Project\GIT\MVC3\MVC\obj\Debug\MVC.pdb
-E:\Project\GIT\MVC3\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
